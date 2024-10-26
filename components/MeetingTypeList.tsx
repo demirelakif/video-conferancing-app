@@ -94,7 +94,28 @@ const MeetingTypeList = () => {
       className='bg-yellow-1'
       handleClick={() => setMeetingState('isJoiningMeeting')}
       />
-
+      {!callDetails ? (
+        <MeetingModel 
+        isOpen = {meetingState === 'isScheduledMeeting'}
+        onClose = {() => setMeetingState(undefined)}
+        title = "Create An Instant Meeting"
+        handleClick = {() => createMeeting()}
+      />
+      ) : (
+        <MeetingModel 
+        isOpen = {meetingState === 'isScheduledMeeting'}
+        onClose = {() => setMeetingState(undefined)}
+        title = "Meeting Created"
+        className = "text-center"
+        buttonText = "Copy Meeting Link"
+        handleClick = {() => 
+        {
+          // navigator.clipboard.write(meetingLink)
+        }}
+        image='/icons/checked.svg'
+        buttonIcon='/icons/copy.svg'
+      />
+      )}
       <MeetingModel 
         isOpen = {meetingState === 'isInstantMeeting'}
         onClose = {() => setMeetingState(undefined)}
